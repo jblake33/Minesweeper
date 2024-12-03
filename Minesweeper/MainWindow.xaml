@@ -1,0 +1,87 @@
+﻿<Window x:Class="Minesweeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Minesweeper"
+        mc:Ignorable="d"
+        Title="Minesweeper 2024" Height="450" Width="800">
+    <Grid x:Name="MainWindowGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Options / Stats (top of window)-->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Button x:Name="NewGame" Content="New Game" Margin="5" Click="NewGame_Click"/>
+            <Label x:Name="MinesLabel" Content="Mines: " Margin="5" Visibility="Collapsed"/>
+            <Label x:Name="DifficultyLabel" Content="Difficulty: " Margin="5"/>
+            <Label x:Name="StatusLabel" Content="" Margin="5"/>
+        </StackPanel>
+
+        <Image x:Name="AliveImg"  Source="pack://application:,,,/Minesweeper;component/Resources/happy.png" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Width="Auto"/>
+        <Image x:Name="DeadImg"  Source="pack://application:,,,/Minesweeper;component/Resources/dead.png" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Width="Auto" Visibility="Collapsed"/>
+        <Image x:Name="WinnerImg"  Source="pack://application:,,,/Minesweeper;component/Resources/winner.png" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Width="Auto" Visibility="Collapsed"/>
+
+        
+        <Label x:Name="BoardLabel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"/>
+        
+        <!--Game board-->
+        <Grid x:Name="Board"  Grid.Row="1" Grid.Column="1" >
+            <Label >Click new game to start playing.</Label>
+        </Grid>
+
+        
+        
+        <!--Debug controls (bottom of window)
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Row: " Margin="5"/>
+            <TextBox x:Name="RowField" Width="40" Margin="5"/>
+            <Label Content="Column: " Margin="5"/>
+            <TextBox x:Name="ColumnField" Width="40" Margin="5"/>
+            <Button x:Name="SubmitBtn" Margin="5" Content="Submit" Click="SubmitBtn_Click"/>
+        </StackPanel>-->
+
+        <!--New Game Selection Box-->
+        <Grid x:Name="NewGameBox" Grid.Row="1" Grid.Column="1" Background="White" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            
+            <Label Content="New Game" Grid.Row="0" Grid.Column="1"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <GroupBox Header="Difficulty">
+                    <StackPanel x:Name="DifficultyRadioBtns">
+                        <RadioButton Content="Easy" GroupName="DifficultyChoice"/>
+                        <RadioButton Content="Medium" GroupName="DifficultyChoice"/>
+                        <RadioButton Content="Hard" GroupName="DifficultyChoice"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Board Size">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Rows:"/>
+                        <TextBox x:Name="NewBoardRowInput" Width="40"/>
+                        <Label Content="Columns:"/>
+                        <TextBox x:Name="NewBoardColumnInput" Width="40"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <Button x:Name="NewGameSubmitBtn" Grid.Row="2" Grid.Column="1" Margin="10" Content="Start Game!" Click="NewGameSubmitBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>
